@@ -1,13 +1,13 @@
-use viuer::{print_from_file, Config};
+use show_image::{ImageView, ImageInfo, create_window};
 
-fn main() {
-    let conf = Config {
-        x: 20,
-        y: 4,
-        width: Some(80),
-        height: Some(25),
-        ..Default::default()
-    };
+#[show_image::main]
+fn main() -> Result<(), Box<dyn std::error::Error>> {
 
-    print_from_file("promethen.png", &conf).expect("epic fail");
+  let image = ImageView::new(ImageInfo::rgb8(1920, 1080), pixel_data);
+
+  // Create a window with default options and display the image.
+  let window = create_window("image", Default::default())?;
+  window.set_image("image-001", image)?;
+
+  Ok(())
 }
