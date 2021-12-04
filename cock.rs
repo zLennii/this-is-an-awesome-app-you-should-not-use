@@ -2,16 +2,22 @@ fn main() {
     println!("Hello World!");
 }
 
-use show_image::{ImageView, ImageInfo, create_window};
+// src/main.rs
+use viuer::{print_from_file, Config};
 
-#[show_image::main]
-fn main() -> Result<(), Box<dyn std::error::Error>> {
+fn main() {
+    let conf = Config {
+        // set offset
+        x: 20,
+        y: 4,
+        // set dimensions
+        width: Some(80),
+        height: Some(25),
+        ..Default::default()
+    };
 
-  let image = ImageView::new(ImageInfo::rgb8(1920, 1080), pixel_data);
-
-  // Create a window with default options and display the image.
-  let window = create_window("image", Default::default())?;
-  window.set_image("image-001", image)?;
-
-  Ok(())
+    // starting from row 4 and column 20,
+    // display `img.jpg` with dimensions 80x25 (in terminal cells)
+    // note that the actual resolution in the terminal will be 80x50
+    print_from_file("promethen.png", &conf).expect("Image printing failed.");
 }
