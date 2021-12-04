@@ -1,7 +1,3 @@
-fn main() {
-    println!("Hello World!");
-}
-
 // src/main.rs
 use viuer::{print_from_file, Config};
 
